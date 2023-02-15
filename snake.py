@@ -5,6 +5,10 @@ UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+W = 90
+S = 270
+A = 180
+D = 0
 
 
 class Snake:
@@ -50,4 +54,20 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def w(self):
+        if self.head.heading() != S:
+            self.head.setheading(W)
+
+    def s(self):
+        if self.head.heading() != W:
+            self.head.setheading(S)
+
+    def a(self):
+        if self.head.heading() != D:
+            self.head.setheading(A)
+
+    def d(self):
+        if self.head.heading() != A:
+            self.head.setheading(D)
 
