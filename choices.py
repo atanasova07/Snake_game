@@ -13,16 +13,19 @@ class Choice:
 
         self.load_image()
 
-        self.one_player_button = tk.Button(self.win, text="One player", font=('Arial', 18), command=self.one_player)
+        self.one_player_button = tk.Button(self.win, text="One player", bg='#76EE00', font=('Arial', 18),
+                                           command=self.one_player)
         self.one_player_button.place(x=125, y=120)
         self.is_one_player = False
 
-        self.two_players_button = tk.Button(self.win, text="Two players", font=('Arial', 18), command=self.two_players)
+        self.two_players_button = tk.Button(self.win, text="Two players", bg='#76EE00', font=('Arial', 18),
+                                            command=self.two_players)
         self.two_players_button.place(x=120, y=185)
         self.is_two_players = False
 
-        self.scoreboard_button = tk.Button(self.win, text="Scoreboard", font=('Arial', 18), command=self.scoreboard_list)
-        self.scoreboard_button.place(x=121, y=245)
+        self.scoreboard_button = tk.Button(self.win, text="Scoreboard", bg='#76EE00', font=('Arial', 18),
+                                           command=self.scoreboard_list)
+        self.scoreboard_button.place(x=121, y=250)
         self.is_scoreboard = False
 
         self.win.mainloop()
@@ -47,4 +50,3 @@ class Choice:
         label = tk.Label(image=im)
         label.image = im
         label.place(x=0, y=0)
-
