@@ -1,5 +1,5 @@
+import random
 from turtle import Turtle
-STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -9,28 +9,44 @@ W = 90
 S = 270
 A = 180
 D = 0
+COLORS = ["#FF1493", "#C1FFC1", "#BF3EFF", "#BCEE68", "#DC143C", "#FF7F50", "#FFD39B", "#8B0A50", "#FFC125", "#ADD8E6"]
 
 
 class Snake:
 
-    def __init__(self):
+    def __new__(cls, *args, **kwargs):
+        return super().__new__(cls)
+
+    def __init__(self, starting_positions):
+        self.color_head = ""
         self.segments = []
-        self.create_snake()
+        self.create_snake(starting_positions)
         self.head = self.segments[0]
+        self.has_lives = False
 
-    def create_snake(self):
-        for position in STARTING_POSITIONS:
-            self.add_segment(position)
+    def create_snake(self, starting_positions):
+        index = 0
+        for position in starting_positions:
+            self.add_segment(position, index)
+            index += 1
 
-    def add_segment(self, position):
+    def add_segment(self, position, index):
         new_segment = Turtle("square")
-        new_segment.color("white")
+        if index == 0:
+            self.color_head = str(random.choice(COLORS))
+            new_segment.color(self.color_head)
+        else:
+            new_segment.color("white")
         new_segment.penup()
         new_segment.goto(position)
         self.segments.append(new_segment)
 
     def extend(self):
-        self.add_segment(self.segments[-1].position())
+        self.add_segment(self.segments[-1].position(), 5)
+
+    def remove(self):
+        self.segments[-1].goto(1000, 1000)
+        del self.segments[-1]
 
     def move(self):
         for seg_num in range(len(self.segments) - 1, 0, -1):
@@ -70,4 +86,3 @@ class Snake:
     def d(self):
         if self.head.heading() != A:
             self.head.setheading(D)
-
