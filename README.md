@@ -12,3 +12,4 @@ There are 4 types of figures:
     - "circle" - it gives you one point and one square to length of the snake. The snake needs to eat it, otherwise there will not appear new figure;
     - "triangle" - if your snake is smaller than 4 squares, the game ends. Its function is basically to remove 2 squares from the snake. The figure is on the screen for a while and then disappears;
     - "turtle" - it gives you three points and three squares to length of the snake. The figure is on the screen for a while and then disappears;
+    - "square" - it gives you one chance to hit the wall and not to die.
