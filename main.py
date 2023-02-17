@@ -7,8 +7,8 @@ from choices import Choice
 import tkinter as tk
 import time
 
-STARTING_POSITIONS1 = [(40, -10), (20, -10), (0, -10)]
-STARTING_POSITIONS2 = [(-50, 40), (-70, 40), (-90, 40)]
+STARTING_POSITIONS1 = [(80, -50), (60, -50), (40, -50)]
+STARTING_POSITIONS2 = [(-90, 40), (-110, 40), (-130, 40)]
 
 choice = Choice()
 timer = 0
@@ -126,7 +126,7 @@ if choice.is_one_player or choice.is_two_players:
                 if snake.head.distance(el) < 15:
                     game_is_on = False
                     scoreboard.game_over()
-                if food.distance(el) < 2:
+                if food.distance(el) < 1:
                     food.refresh()
 
         if food.shape() == "turtle":
@@ -143,7 +143,7 @@ if choice.is_one_player or choice.is_two_players:
 
         if food.shape() == "square":
             timer += 1
-            if timer == 20:
+            if timer == 30:
                 food.refresh()
                 timer = 0
 
@@ -165,7 +165,7 @@ if choice.is_one_player or choice.is_two_players:
                 else:
                     game_is_on = False
                     scoreboard.game_over()
-            else:
+            elif food.shape() == "square":
                 snake.has_lives = True
 
             food.refresh()
@@ -180,7 +180,7 @@ if choice.is_one_player or choice.is_two_players:
                 snake2.extend()
                 scoreboard2.increase_score()
             elif food.shape() == "triangle":
-                if len(snake2.segments) >= 3:
+                if len(snake2.segments) >= 4:
                     snake2.remove()
                     snake2.remove()
                 else:
@@ -199,6 +199,7 @@ if choice.is_one_player or choice.is_two_players:
                     scoreboard.game_over()
                 else:
                     snake.has_lives = False
+                    snake.segments[0].goto(0, 0)
 
         if two_pl:
             for segment in snake2.segments[1:]:
@@ -208,6 +209,7 @@ if choice.is_one_player or choice.is_two_players:
                         scoreboard.game_over()
                     else:
                         snake2.has_lives = False
+                        snake2.segments[0].goto(0, 0)
 
         if snake.head.xcor() > 280 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
             if not snake.has_lives:
@@ -215,6 +217,7 @@ if choice.is_one_player or choice.is_two_players:
                 scoreboard.game_over()
             else:
                 snake.has_lives = False
+                snake.segments[0].goto(0, 0)
 
         if two_pl and (snake2.head.xcor() > 280 or snake2.head.xcor() < -290 or snake2.head.ycor() > 290
                        or snake2.head.ycor() < -290):
@@ -223,6 +226,7 @@ if choice.is_one_player or choice.is_two_players:
                 scoreboard.game_over()
             else:
                 snake2.has_lives = False
+                snake2.segments[0].goto(0, 0)
 
     screen.exitonclick()
 
