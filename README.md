@@ -1,5 +1,4 @@
-# Snake_game
-Snake game
+# Snake game
 ### **Description:**
 There are two options to play this game: with a friend(two players) or alone(one player). 
 Another functionality is viewing the last 10 results(scoreboard).
